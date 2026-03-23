@@ -214,49 +214,30 @@ export default function LiveShoppingPage() {
 
         {!liveSession ? (
           <div className="grid md:grid-cols-2 gap-8 py-12">
-            <Card className="relative overflow-hidden p-8 bg-white/[0.02] border-white/10 flex flex-col items-center text-center group hover:bg-white/[0.04] transition-all cursor-pointer" onClick={handleCreateSession}>
-              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Users className="size-32 -mr-8 -mt-8 rotate-12" />
-              </div>
-              <div className="size-20 rounded-3xl bg-primary/20 flex items-center justify-center mb-8 ring-1 ring-primary/40 group-hover:scale-110 transition-transform">
+            <Card className="p-8 bg-white/[0.02] border-white/10 flex flex-col items-center text-center group hover:bg-white/[0.04] transition-all cursor-pointer" onClick={handleCreateSession}>
+              <div className="size-20 rounded-3xl bg-primary/20 flex items-center justify-center mb-8 ring-1 ring-primary/40">
                 <Users className="size-10 text-primary" />
               </div>
-              <h2 className="text-3xl font-bold mb-4">Start Show</h2>
-              <p className="text-gray-400 mb-8 max-w-sm text-lg leading-relaxed">Present your latest drops and help buyers find their perfect fit in real-time.</p>
-              <div className="mt-auto flex items-center text-primary font-bold">
-                Get Started <ArrowRight className="ml-2 h-5 w-5" />
-              </div>
+              <h2 className="text-3xl font-bold mb-4">Start Session</h2>
+              <Button variant="gradient" className="rounded-full px-8">Host Now</Button>
             </Card>
 
-            <div className="flex flex-col gap-6">
-               <Card className="p-8 bg-white/[0.02] border-white/10 flex flex-col items-center text-center group hover:bg-white/[0.04] transition-all">
-                <div className="size-16 rounded-2xl bg-accent/20 flex items-center justify-center mb-6 ring-1 ring-accent/40">
-                  <ShoppingBag className="size-8 text-accent" />
+            <Card className="p-8 bg-white/[0.02] border-white/10 flex flex-col items-center text-center group hover:bg-white/[0.04] transition-all">
+                <div className="size-20 rounded-3xl bg-accent/20 flex items-center justify-center mb-8 ring-1 ring-accent/40">
+                  <ShoppingBag className="size-10 text-accent" />
                 </div>
-                <h2 className="text-2xl font-bold mb-3">Join Session</h2>
-                <p className="text-gray-400 mb-8 max-w-sm">Hop into a live session to experience styles in AR with instant fit feedback.</p>
-                <div className="flex w-full max-w-sm gap-2 bg-white/5 p-1.5 rounded-2xl border border-white/5">
+                <h2 className="text-3xl font-bold mb-4">Join Session</h2>
+                <div className="flex w-full max-w-sm gap-2 bg-white/5 p-1.5 rounded-2xl border border-white/5 mt-4">
                    <Input 
-                    placeholder="Enter Session Code" 
+                    placeholder="Session ID" 
                     className="bg-transparent border-none focus-visible:ring-0"
                     value={sessionId}
                     onChange={(e) => setSessionId(e.target.value)}
                   />
                   <Button variant="secondary" className="rounded-xl px-6" onClick={handleJoinSession}>Join</Button>
                 </div>
-              </Card>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col items-center justify-center text-center gap-2">
-                  <div className="text-2xl font-bold">98%</div>
-                  <div className="text-[10px] uppercase tracking-widest text-gray-500">Fit Accuracy</div>
-                </div>
-                <div className="bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col items-center justify-center text-center gap-2">
-                  <div className="text-2xl font-bold">Real-time</div>
-                  <div className="text-[10px] uppercase tracking-widest text-gray-500">AR Preview</div>
-                </div>
-              </div>
-            </div>
+            </Card>
+
           </div>
         ) : (
           <div className="space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-700">
@@ -286,9 +267,6 @@ export default function LiveShoppingPage() {
                     <Camera className="h-4 w-4 mr-2" /> Scan New Garment
                   </Button>
                 )}
-                <Button variant="glass" className="rounded-full px-6 border-white/10 hover:border-white/20" onClick={handleAskSeller}>
-                  <MessageSquare className="h-4 w-4 mr-2 text-primary" /> Request Fit Info
-                </Button>
               </div>
             </div>
 
@@ -347,17 +325,7 @@ export default function LiveShoppingPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-6 flex flex-col justify-end">
                         <div className="space-y-1 mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                          <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-bold uppercase tracking-widest bg-primary px-2 py-0.5 rounded text-white italic">HOT ITEM</span>
-                            <span className="text-[10px] font-bold uppercase tracking-widest bg-white/20 backdrop-blur-md px-2 py-0.5 rounded text-white">NEW</span>
-                          </div>
                           <h4 className="text-2xl font-black italic uppercase tracking-tighter">{garment.type}</h4>
-                          <div className="flex items-center gap-2 text-xs text-gray-300">
-                             <div className="flex gap-0.5">
-                                {[1,2,3,4,5].map(i => <div key={i} className="size-1 rounded-full bg-primary" />)}
-                             </div>
-                             AI Fit: {garment.fitRecommendation?.size || 'M'}
-                          </div>
                         </div>
                         <Button 
                           variant="gradient" 
