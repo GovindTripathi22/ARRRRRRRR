@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "claude-code-server": {
+      "type": "stdio",
+      "command": "claude",
+      "args": ["mcp", "serve"],
+      "env": {}
+    }
+  }
+}
